@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+package greet;
+
+// The Department service definition.
+service RemoteDepartment{
+  // Sends a greeting
+  rpc GetDepartmentInfo (DepartmentRequest) returns (DepartmentModel);
+  rpc GetDepartmentList (DepartmentRequest) returns (DepartmentsResponse);
+  rpc AddEditRecord (DepartmentModel) returns (DepartmentResponse);
+  rpc DeleteRecord (DepartmentRequest) returns (DepartmentResponse);
+}
+
+// The request parameter
+message DepartmentRequest {
+  int32 Id = 1;
+  string Name=2;
+}
+
+// The response model
+message DepartmentModel {
+  int32 Id = 1;
+  string Name=2;
+}
+
+// The response model
+message DepartmentResponse {
+  int32 RetVal = 1;  
+  string MSG=2;
+}
+
+message DepartmentsResponse{
+repeated DepartmentModel items = 1;
+}

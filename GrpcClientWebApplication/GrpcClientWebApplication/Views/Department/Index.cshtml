@@ -1,0 +1,109 @@
+﻿@model GrpcService.DepartmentsResponse
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table" id="tblDept">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @Id = "delete_record" })*@
+                <a href="javascript:void(0)" id="delete_record" onclick=DeleteRecord(@item.Id)>Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+
+    <link href="~/css/jquery-confirm.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-confirm.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$(this).children("td:eq(2)").click(function () {
+            //    alert('hi')
+            //});
+
+            //$('#tblDept tr').click(function () {
+            //    var tr_id = $(this).closest("a>#delete_record").attr('id');
+            //    alert(tr_id);
+            //});
+        });
+        function DeleteRecord(Id) {
+
+            $.confirm({
+                title: 'Confirm!',
+                content: 'Do you want to delete the selected record?',
+                buttons: {
+                    yes: function () {
+                        //$.alert('Confirmed!');
+
+                        $.ajax({
+                            url: '@(Url.Action("Delete", "Department"))',
+                            // data: JSON.stringify({ id: Id }),
+                            data: { id: Id },
+                            contentType: "application/json; charset=utf-8",
+                            dataType: 'json',
+                            type: "GET",
+                            success: function (data) {
+                                if (parseInt(data.retVal) >= 0) {
+                                    $.alert({
+                                        title: 'Message!',
+                                        content: data.msg,
+                                        buttons: {
+                                            ok: function () {
+                                                window.location.reload();
+                                            }
+                                        }
+                                    });
+                                }
+                                else if (parseInt(data.retVal) == -1) {
+                                    $.alert({
+                                        title: 'Error!',
+                                        content: data.msg,
+                                        buttons: {
+                                            ok: function () {
+                                                window.location.reload();
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            error: function () { alert('error'); },
+                            async: false,
+                        });
+                    },
+                    cancel: function () {
+                        //$.alert('Canceled!');
+                    }
+                    //somethingElse: {
+                    //    text: 'Something else',
+                    //    btnClass: 'btn-blue',
+                    //    keys: ['enter', 'shift'],
+                    //    action: function () {
+                    //        $.alert('Something else?');
+                    //    }
+                    //}
+                }
+            });
+
+
+
+        }
+    </script>
+}

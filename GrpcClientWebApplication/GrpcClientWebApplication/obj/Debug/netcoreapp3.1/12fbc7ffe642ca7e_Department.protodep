@@ -1,0 +1,2 @@
+obj\Debug\netcoreapp3.1\Protos/Department.cs \
+obj\Debug\netcoreapp3.1\Protos/DepartmentGrpc.cs: Protos/Department.proto
