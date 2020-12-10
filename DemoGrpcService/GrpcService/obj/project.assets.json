@@ -1649,11 +1649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GRPC\\DemoGrpcService\\GrpcService\\GrpcService.csproj",
+      "projectUniqueName": "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcService\\GrpcService.csproj",
       "projectName": "GrpcService",
-      "projectPath": "D:\\GRPC\\DemoGrpcService\\GrpcService\\GrpcService.csproj",
+      "projectPath": "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcService\\GrpcService.csproj",
       "packagesPath": "C:\\Users\\Ajay\\.nuget\\packages\\",
-      "outputPath": "D:\\GRPC\\DemoGrpcService\\GrpcService\\obj\\",
+      "outputPath": "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
