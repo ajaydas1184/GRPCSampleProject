@@ -26,7 +26,6 @@ D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\bin\Debug\netcoreapp3.1\ru
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.csprojAssemblyReference.cache
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.AssemblyInfoInputs.cache
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.AssemblyInfo.cs
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.csproj.CoreCompileInputs.cache

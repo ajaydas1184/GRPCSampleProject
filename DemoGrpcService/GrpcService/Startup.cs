@@ -34,6 +34,7 @@ namespace GrpcService
             {
                 endpoints.MapGrpcService<GreeterService>();
                 endpoints.MapGrpcService<DepartmentService>();
+                endpoints.MapGrpcService<EmployeeService>();
 
                 endpoints.MapGet("/", async context =>
                 {

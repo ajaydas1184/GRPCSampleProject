@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <None Remove="Protos\Department.proto" />
+    <None Remove="Protos\Employee.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <Protobuf Include="Protos\Department.proto" GrpcServices="Server" />
+    <Protobuf Include="Protos\Employee.proto" GrpcServices="Server" />
     <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
   </ItemGroup>
 
