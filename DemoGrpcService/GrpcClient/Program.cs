@@ -22,10 +22,9 @@ namespace GrpcClient
             name = Console.ReadLine();
             var reply = await grpcClient.SayHelloAsync(new HelloRequest { Name = name });
 
+            var deptClient = new RemoteDepartment.RemoteDepartmentClient(grpcChannel);
 
-            //var deptClient = new RemoteDepartment.RemoteDepartmentClient(grpcChannel);
-
-            //var rets = deptClient.AddEditRecord(new DepartmentModel() { Name = "Test" });
+            var ret = await deptClient.AddEditRecordAsync(new DepartmentModel() { Name = "Test" });
 
             //var empClient = new RemoteEmployee.RemoteEmployeeClient(grpcChannel);
 
@@ -46,8 +45,8 @@ namespace GrpcClient
             //    Console.WriteLine(string.Format("Id:{0}\nName:{1}", s.Id, s.Name));
             //}
 
-            //Console.WriteLine(string.Format("{0}\n\n\nId:{1}\nName:{2}", reply.Message, ret.RetVal, ret.MSG));
-            Console.WriteLine(string.Format("{0}", reply.Message));
+            //Console.WriteLine(string.Format("{0}\n\n\nId:{1}\nName:{2}", "Deba", ret.RetVal, ret.MSG));
+            //Console.WriteLine(string.Format("{0}", reply.Message));
         }
     }
 }

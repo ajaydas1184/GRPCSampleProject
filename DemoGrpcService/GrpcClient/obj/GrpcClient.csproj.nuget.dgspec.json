@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GRPC\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj": {}
+    "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj": {}
   },
   "projects": {
-    "D:\\GRPC\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj": {
+    "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GRPC\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj",
+        "projectUniqueName": "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj",
         "projectName": "GrpcClient",
-        "projectPath": "D:\\GRPC\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj",
+        "projectPath": "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcClient\\GrpcClient.csproj",
         "packagesPath": "C:\\Users\\Ajay\\.nuget\\packages\\",
-        "outputPath": "D:\\GRPC\\DemoGrpcService\\GrpcClient\\obj\\",
+        "outputPath": "D:\\GRPC\\GRPCSampleProject\\DemoGrpcService\\GrpcClient\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

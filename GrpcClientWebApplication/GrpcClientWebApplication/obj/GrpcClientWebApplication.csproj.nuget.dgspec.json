@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ajay\\source\\repos\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj": {}
+    "D:\\GRPC\\GRPCSampleProject\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ajay\\source\\repos\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj": {
+    "D:\\GRPC\\GRPCSampleProject\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ajay\\source\\repos\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj",
+        "projectUniqueName": "D:\\GRPC\\GRPCSampleProject\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj",
         "projectName": "GrpcClientWebApplication",
-        "projectPath": "C:\\Users\\Ajay\\source\\repos\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj",
+        "projectPath": "D:\\GRPC\\GRPCSampleProject\\GrpcClientWebApplication\\GrpcClientWebApplication\\GrpcClientWebApplication.csproj",
         "packagesPath": "C:\\Users\\Ajay\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ajay\\source\\repos\\GrpcClientWebApplication\\GrpcClientWebApplication\\obj\\",
+        "outputPath": "D:\\GRPC\\GRPCSampleProject\\GrpcClientWebApplication\\GrpcClientWebApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
