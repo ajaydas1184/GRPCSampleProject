@@ -68,24 +68,10 @@ namespace GrpcClientWebApplication.Controllers
         }
 
         // GET: EmployeeController/Delete/5
-        public ActionResult Delete(int id)
+        public JsonResult Delete(string id)
         {
-            return View();
-        }
-
-        // POST: EmployeeController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            EmployeeResponse response = _empClient.DeleteRecord(new FilterRequest() { Id = Int32.Parse(id) });
+            return Json(response);
         }
     }
 }
