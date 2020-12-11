@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+package employeePackage;
+
+// The Department service definition.
+service RemoteEmployee{
+  // Sends a greeting
+  rpc GetEmployeeInfo (FilterRequest) returns (EmployeeModel);
+  rpc GetEmployeeList (FilterRequest) returns (EmployeesResponse);
+  rpc AddEditRecord (EmployeeModel) returns (EmployeeResponse);
+  rpc DeleteRecord (FilterRequest) returns (EmployeeResponse);
+}
+
+// The request parameter
+message FilterRequest {
+  int32 Id = 1;
+  string Name=2;
+  string EmployeeType=3;
+}
+
+// The response model
+message EmployeeModel {
+  int32 Id = 1;
+  string FirstName=2;
+  string LastName=3;
+  string Gender=4;
+  string DateOfJoining=5;
+  int32 DepartmentId=6;
+  int32 MonthlySalary=7;
+  int32 HoursWorked=8;
+  int32 HourlyPay=9;
+  string EmployeeType=10;
+  string DepartmentName=11;
+}
+
+// The response model
+message EmployeeResponse {
+  int32 RetVal = 1;  
+  string MSG=2;
+}
+
+message EmployeesResponse{
+repeated EmployeeModel items = 1;
+}

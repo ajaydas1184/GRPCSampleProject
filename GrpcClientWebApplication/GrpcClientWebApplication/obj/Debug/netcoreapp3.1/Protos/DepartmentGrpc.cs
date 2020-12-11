@@ -13,7 +13,7 @@ namespace GrpcService {
   /// </summary>
   public static partial class RemoteDepartment
   {
-    static readonly string __ServiceName = "greet.RemoteDepartment";
+    static readonly string __ServiceName = "departmentPackage.RemoteDepartment";
 
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
     {
@@ -45,38 +45,38 @@ namespace GrpcService {
       return parser.ParseFrom(context.PayloadAsNewBuffer());
     }
 
-    static readonly grpc::Marshaller<global::GrpcService.DepartmentRequest> __Marshaller_greet_DepartmentRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentRequest.Parser));
-    static readonly grpc::Marshaller<global::GrpcService.DepartmentModel> __Marshaller_greet_DepartmentModel = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentModel.Parser));
-    static readonly grpc::Marshaller<global::GrpcService.DepartmentsResponse> __Marshaller_greet_DepartmentsResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentsResponse.Parser));
-    static readonly grpc::Marshaller<global::GrpcService.DepartmentResponse> __Marshaller_greet_DepartmentResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentResponse.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.DepartmentRequest> __Marshaller_departmentPackage_DepartmentRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentRequest.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.DepartmentModel> __Marshaller_departmentPackage_DepartmentModel = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentModel.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.DepartmentsResponse> __Marshaller_departmentPackage_DepartmentsResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentsResponse.Parser));
+    static readonly grpc::Marshaller<global::GrpcService.DepartmentResponse> __Marshaller_departmentPackage_DepartmentResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcService.DepartmentResponse.Parser));
 
     static readonly grpc::Method<global::GrpcService.DepartmentRequest, global::GrpcService.DepartmentModel> __Method_GetDepartmentInfo = new grpc::Method<global::GrpcService.DepartmentRequest, global::GrpcService.DepartmentModel>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetDepartmentInfo",
-        __Marshaller_greet_DepartmentRequest,
-        __Marshaller_greet_DepartmentModel);
+        __Marshaller_departmentPackage_DepartmentRequest,
+        __Marshaller_departmentPackage_DepartmentModel);
 
     static readonly grpc::Method<global::GrpcService.DepartmentRequest, global::GrpcService.DepartmentsResponse> __Method_GetDepartmentList = new grpc::Method<global::GrpcService.DepartmentRequest, global::GrpcService.DepartmentsResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetDepartmentList",
-        __Marshaller_greet_DepartmentRequest,
-        __Marshaller_greet_DepartmentsResponse);
+        __Marshaller_departmentPackage_DepartmentRequest,
+        __Marshaller_departmentPackage_DepartmentsResponse);
 
     static readonly grpc::Method<global::GrpcService.DepartmentModel, global::GrpcService.DepartmentResponse> __Method_AddEditRecord = new grpc::Method<global::GrpcService.DepartmentModel, global::GrpcService.DepartmentResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "AddEditRecord",
-        __Marshaller_greet_DepartmentModel,
-        __Marshaller_greet_DepartmentResponse);
+        __Marshaller_departmentPackage_DepartmentModel,
+        __Marshaller_departmentPackage_DepartmentResponse);
 
     static readonly grpc::Method<global::GrpcService.DepartmentRequest, global::GrpcService.DepartmentResponse> __Method_DeleteRecord = new grpc::Method<global::GrpcService.DepartmentRequest, global::GrpcService.DepartmentResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "DeleteRecord",
-        __Marshaller_greet_DepartmentRequest,
-        __Marshaller_greet_DepartmentResponse);
+        __Marshaller_departmentPackage_DepartmentRequest,
+        __Marshaller_departmentPackage_DepartmentResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor

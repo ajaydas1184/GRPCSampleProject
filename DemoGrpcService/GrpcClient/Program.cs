@@ -22,23 +22,15 @@ namespace GrpcClient
             name = Console.ReadLine();
             var reply = await grpcClient.SayHelloAsync(new HelloRequest { Name = name });
 
-
             //var deptClient = new RemoteDepartment.RemoteDepartmentClient(grpcChannel);
 
-            //var rets = deptClient.AddEditRecord(new DepartmentModel() { Name = "Test" });
+            //var ret = await deptClient.AddEditRecordAsync(new DepartmentModel() { Name = "Test" });
 
             //var empClient = new RemoteEmployee.RemoteEmployeeClient(grpcChannel);
 
-            //var ret = await empClient.AddEditRecordAsync(new EmployeeModel()
+            //var ret = await empClient.GetEmployeeListAsync(new FilterRequest()
             //{
-            //    Id = 0,
-            //    FirstName = "lakshmi",
-            //    LastName = "Palanivel",
-            //    DateOfJoining = new DateTime(2010, 04, 11).ToString(),
-            //    Gender = "Female",
-            //    DepartmentId = 1,
-            //    MonthlySalary = 48000,
-            //    EmployeeType = "permanent"
+            //    EmployeeType = ""
             //});
 
             //foreach (var s in ret.Items)
@@ -46,7 +38,7 @@ namespace GrpcClient
             //    Console.WriteLine(string.Format("Id:{0}\nName:{1}", s.Id, s.Name));
             //}
 
-            //Console.WriteLine(string.Format("{0}\n\n\nId:{1}\nName:{2}", reply.Message, ret.RetVal, ret.MSG));
+            // Console.WriteLine(string.Format("{0}\n\n\nId:{1}\nName:{2}", "Deba", ret.RetVal, ret.MSG));
             Console.WriteLine(string.Format("{0}", reply.Message));
         }
     }
