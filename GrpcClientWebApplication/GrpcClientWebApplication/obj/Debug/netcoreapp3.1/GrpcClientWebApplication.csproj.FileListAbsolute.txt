@@ -231,3 +231,5 @@ D:\GRPC\GRPCSampleProject\GrpcClientWebApplication\GrpcClientWebApplication\obj\
 D:\GRPC\GRPCSampleProject\GrpcClientWebApplication\GrpcClientWebApplication\obj\Debug\netcoreapp3.1\GrpcClientWebApplication.dll
 D:\GRPC\GRPCSampleProject\GrpcClientWebApplication\GrpcClientWebApplication\obj\Debug\netcoreapp3.1\GrpcClientWebApplication.pdb
 D:\GRPC\GRPCSampleProject\GrpcClientWebApplication\GrpcClientWebApplication\obj\Debug\netcoreapp3.1\GrpcClientWebApplication.genruntimeconfig.cache
+D:\GRPC\GRPCSampleProject\GrpcClientWebApplication\GrpcClientWebApplication\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Index.cshtml.g.cs
+D:\GRPC\GRPCSampleProject\GrpcClientWebApplication\GrpcClientWebApplication\obj\Debug\netcoreapp3.1\GrpcClientWebApplication.csprojAssemblyReference.cache

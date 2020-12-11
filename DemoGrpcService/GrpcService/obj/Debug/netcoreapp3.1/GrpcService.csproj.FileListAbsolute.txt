@@ -37,3 +37,4 @@ D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\st
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.dll
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.pdb
 D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.genruntimeconfig.cache
+D:\GRPC\GRPCSampleProject\DemoGrpcService\GrpcService\obj\Debug\netcoreapp3.1\GrpcService.csprojAssemblyReference.cache

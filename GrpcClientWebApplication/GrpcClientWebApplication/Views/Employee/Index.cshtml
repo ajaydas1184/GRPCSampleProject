@@ -1,0 +1,65 @@
+﻿@model GrpcService.EmployeesResponse
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@Html.DropDownList("ddlEmpTypes", new List<SelectListItem>
+{
+    new SelectListItem{ Text="Permanent", Value = "1", Selected=(ViewBag.EmpType=="Permanent"? true :false) },
+    new SelectListItem{ Text="Contract", Value = "2",Selected=(ViewBag.EmpType=="Contract"? true :false) },
+ }, "All", new { @id = "ddlEmpTypes" })
+
+<table class="table" id="tblEmp">
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Gender</th>
+        <th>Department</th>
+        <th>Monthly Salary</th>
+        <th>HourlyPay</th>
+        <th>HoursWorked</th>
+        <th>EmployeeType</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Gender</td>
+            <td>@item.DepartmentName</td>
+            <td>@item.MonthlySalary</td>
+            <td>@item.HourlyPay</td>
+            <td>@item.HoursWorked</td>
+            <td>@item.EmployeeType</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @Id = "delete_record" })*@
+                <a href="javascript:void(0)" id="delete_record" onclick=DeleteRecord(@item.Id)>Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ddlEmpTypes').change(function () {
+                var type = $("#ddlEmpTypes option:selected").text();
+                var url = "/Employee/Index?type=" + type;
+                if (type == "All") {
+                    url = "/Employee";
+                }
+                window.location.href = url;
+            });
+        });
+    </script>
+}
