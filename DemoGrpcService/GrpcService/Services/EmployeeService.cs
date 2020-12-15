@@ -150,7 +150,6 @@ namespace GrpcService
                 });
             }
         }
-
         public override Task<EmployeesResponse> GetEmployeeList(FilterRequest request, ServerCallContext context)
         {
             EmployeesResponse responseData = new EmployeesResponse();
@@ -161,7 +160,7 @@ namespace GrpcService
                     switch (request.EmployeeType.ToLower())
                     {
                         case "permanent":
-                            var perEmp = (from s in dataContext.Employees.OfType<PermanentEmployee>()                                          
+                            var perEmp = (from s in dataContext.Employees.OfType<PermanentEmployee>()
                                           where (request.Id == 0 || s.Id == request.Id) && (request.Name == "" || s.FirstName.Contains(request.Name))
                                           && (request.Name == "" || s.LastName.Contains(request.Name))
                                           select new EmployeeModel
@@ -174,7 +173,7 @@ namespace GrpcService
                                               DepartmentId = s.DepartmentId,
                                               MonthlySalary = s.MonthlySalary,
                                               EmployeeType = "Permanent",
-                                              DepartmentName=s.Department.Name
+                                              DepartmentName = s.Department.Name
                                           });
 
                             responseData.Items.AddRange(perEmp.ToArray());
@@ -234,6 +233,37 @@ namespace GrpcService
                 _logger.LogError("DepartmentService.GetDepartmentList - Error: {0}", ex.Message);
             }
             return Task.FromResult(responseData);
+        }
+
+        public override Task<EmployeeModel> GetEmployeeInfo(FilterRequest request, ServerCallContext context)
+        {
+            EmployeeModel empModel = new EmployeeModel();
+
+            try
+            {
+                using (DataContext dataContext = new DataContext())
+                {
+                    var employee = dataContext.Employees.Find(request.Id);
+
+                    empModel.Id = employee.Id;
+                    empModel.FirstName = employee.FirstName;
+                    empModel.LastName = employee.LastName;
+                    empModel.DateOfJoining = employee.DateOfJoining.ToString();
+                    empModel.Gender = employee.Gender;
+                    empModel.DepartmentId = employee.DepartmentId;
+                    empModel.MonthlySalary = (employee is PermanentEmployee ? ((PermanentEmployee)employee).MonthlySalary : 0);
+                    empModel.HourlyPay = (employee is ContractEmployee ? ((ContractEmployee)employee).HourlyPay : 0);
+                    empModel.HoursWorked = (employee is ContractEmployee ? ((ContractEmployee)employee).HoursWorked : 0);
+                    empModel.EmployeeType = (employee is ContractEmployee ? "Permanent" : "Contract");
+                    empModel.DepartmentName = employee.Department.Name;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("DepartmentService.GetEmployeeInfo - Error: {0}", ex.Message);
+            }
+            return Task.FromResult(empModel);
         }
     }
 }

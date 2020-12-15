@@ -1,2 +1,0 @@
-obj\Debug\netcoreapp3.1\Protos/Employee.cs \
-obj\Debug\netcoreapp3.1\Protos/EmployeeGrpc.cs: Protos/Employee.proto
