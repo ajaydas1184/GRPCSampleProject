@@ -6,14 +6,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using GrpcService.Data;
 using GrpcService.Models;
+using Microsoft.Extensions.Options;
+
 namespace GrpcService.Services
 {
     public class DepartmentService : RemoteDepartment.RemoteDepartmentBase
     {
+        private IOptions<DBConnection> _dbConnection;
         private readonly ILogger<DepartmentService> _logger;
-        public DepartmentService(ILogger<DepartmentService> logger)
+        public DepartmentService(ILogger<DepartmentService> logger, IOptions<DBConnection> dbConnection)
         {
             _logger = logger;
+            _dbConnection = dbConnection;
         }
 
         public override Task<DepartmentResponse> AddEditRecord(DepartmentModel request, ServerCallContext context)
@@ -22,7 +26,7 @@ namespace GrpcService.Services
             {
                 int saveStatus = 0;
                 string msg = "";
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
                     Department model = new Department()
                     {
@@ -68,7 +72,7 @@ namespace GrpcService.Services
             {
                 int saveStatus = 0;
                 string msg = "";
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
                     if (request.Id > 0)
                     {
@@ -116,7 +120,7 @@ namespace GrpcService.Services
             DepartmentModel model = new DepartmentModel();
             try
             {
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
 
                     var dept = dataContext.Departments.FirstOrDefault(x => x.Id == request.Id);
@@ -139,7 +143,7 @@ namespace GrpcService.Services
             DepartmentsResponse responseData = new DepartmentsResponse();
             try
             {
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
 
                     var query = (from s in dataContext.Departments

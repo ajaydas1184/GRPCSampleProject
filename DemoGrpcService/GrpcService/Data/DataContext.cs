@@ -1,4 +1,5 @@
 ﻿using GrpcService.Models;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 namespace GrpcService.Data
 {
     public class DataContext : DbContext
-    {
-        public DataContext() : base(@"Data Source=DESKTOP-GV90GIC\SQLEXPRESS;Initial Catalog=GrpcTestDB;Integrated Security=True")
-        {
+    {        
+        public DataContext(IOptions<DBConnection> dbConnection) : base(dbConnection.Value.DefaultConnection) //base(@"Data Source=DESKTOP-GV90GIC\SQLEXPRESS;Initial Catalog=GrpcTestDB;Integrated Security=True")
+        {           
             Database.SetInitializer<DataContext>(new DbInitializer());
         }
 

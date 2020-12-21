@@ -6,15 +6,18 @@ using Grpc.Core;
 using GrpcService.Data;
 using GrpcService.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace GrpcService
 {
     public class EmployeeService : RemoteEmployee.RemoteEmployeeBase
     {
+        private IOptions<DBConnection> _dbConnection;
         private readonly ILogger<EmployeeService> _logger;
-        public EmployeeService(ILogger<EmployeeService> logger)
+        public EmployeeService(ILogger<EmployeeService> logger, IOptions<DBConnection> dbConnection)
         {
             _logger = logger;
+            _dbConnection = dbConnection;
         }
 
         public override Task<EmployeeResponse> AddEditRecord(EmployeeModel request, ServerCallContext context)
@@ -23,7 +26,7 @@ namespace GrpcService
             {
                 int saveStatus = 0;
                 string msg = "";
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
                     if (request.EmployeeType.ToLower() == "permanent")
                     {
@@ -115,7 +118,7 @@ namespace GrpcService
             {
                 int saveStatus = 0;
                 string msg = "";
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
                     if (request.Id > 0)
                     {
@@ -155,7 +158,7 @@ namespace GrpcService
             EmployeesResponse responseData = new EmployeesResponse();
             try
             {
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
                     switch (request.EmployeeType.ToLower())
                     {
@@ -241,7 +244,7 @@ namespace GrpcService
 
             try
             {
-                using (DataContext dataContext = new DataContext())
+                using (DataContext dataContext = new DataContext(_dbConnection))
                 {
                     var employee = dataContext.Employees.Find(request.Id);
 
