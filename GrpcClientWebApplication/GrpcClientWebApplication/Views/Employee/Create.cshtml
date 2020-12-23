@@ -1,0 +1,212 @@
+﻿@model GrpcService.EmployeeModel
+
+@{
+    ViewData["Title"] = "Create";
+
+    var gerderlist = new List<SelectListItem>
+{
+    new SelectListItem{ Text="Male", Value = "Male"},
+    new SelectListItem{ Text="Female", Value = "Female" },
+    };
+
+    var empTypes = new List<SelectListItem>
+{
+    new SelectListItem{ Text="Permanent", Value = "Permanent"},
+    new SelectListItem{ Text="Contract", Value = "Contract" },
+    };
+}
+
+
+<h1>Create</h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Department</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("EmployeeType", "Employee Type", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.EmployeeType, empTypes, "Select", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeType, "", new { @class = "text-danger", @Id = "spEmployeeTypeValid" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("FirstName", "First Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger", @Id = "spFirstNameValid" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("LastName", "Last Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger", @Id = "spLastNameValid" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Gender", "Gender", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Gender, gerderlist, "Select", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger", @Id = "spGenderValid" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("DateOfJoining", "Date Of Joining", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control", @id = "datepicker" } })
+                @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger", @Id = "spDateOfJoiningValid" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("DepartmentName", "Department Name", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DepartmentId, (IEnumerable<SelectListItem>)ViewBag.DepartmentList, "Select", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger", @Id = "spDepartmentNameValid" })
+            </div>
+        </div>
+
+        <div class="form-group" id="dvMonthlySalary">
+            @Html.Label("MonthlySalary", "Monthly Salary", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MonthlySalary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MonthlySalary, "", new { @class = "text-danger", @Id = "spMonthlySalaryValid" })
+            </div>
+        </div>
+
+        <div class="form-group" id="dvHoursWorked">
+            @Html.Label("HoursWorked", "Hours Worked", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoursWorked, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoursWorked, "", new { @class = "text-danger", @Id = "spHoursWorkedValid" })
+            </div>
+        </div>
+
+        <div class="form-group" id="dvHourlyPay">
+            @Html.Label("HourlyPay", "Hourly Pay", htmlAttributes: new { @class = "control -label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HourlyPay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HourlyPay, "", new { @class = "text-danger", @Id = "spHourlyPayValid" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="btnSubmit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dvHoursWorked').hide();
+            $('#dvHourlyPay').hide();
+            $('#dvMonthlySalary').hide();
+
+            $("#datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changemonth: true,
+                changeyear: true
+            });
+
+            $('#EmployeeType').change(function () {
+                alert('hi');
+                var type = $("#EmployeeType option:selected").val();
+
+                if (type == "Permanent") {
+                    $('#dvHoursWorked').hide();
+                    $('#dvHourlyPay').hide();
+                    $('#dvMonthlySalary').show();
+                }
+                else if (type == "Contract") {
+                    $('#dvHoursWorked').show();
+                    $('#dvHourlyPay').show();
+                    $('#dvMonthlySalary').hide();
+                }
+                else {
+                    $('#dvHoursWorked').hide();
+                    $('#dvHourlyPay').hide();
+                    $('#dvMonthlySalary').hide();
+                }
+
+            });
+
+            $('#btnSubmit').click(function () {
+                var isValid = true;
+
+                var empType = $("#EmployeeType option:selected").val();
+                if (empType != "") {
+                    $("#spEmployeeTypeValid").html("");
+                    isValid = true;
+                } else {
+                    $("#spEmployeeTypeValid").html("Employee Type is required.");
+                    isValid = false;
+                }
+
+                if (($("#FirstName").val()).trim() != "") {
+                    $("#spFirstNameValid").html("");
+                    isValid = true;
+                } else {
+                    $("#spFirstNameValid").html("First Name is required.");
+                    isValid = false;
+                }
+
+                if (($("#LastName").val()).trim() != "") {
+                    $("#spLastNameValid").html("");
+                    isValid = true;
+                } else {
+                    $("#spLastNameValid").html("Last Name is required.");
+                    isValid = false;
+                }
+
+                var gender = $("#Gender option:selected").val();
+                if (gender != "") {
+                    $("#spGenderValid").html("");
+                    isValid = true;
+                } else {
+                    $("#spGenderValid").html("Gender is required.");
+                    isValid = false;
+                }
+
+                if (($("#datepicker").val()).trim() != "") {
+                    $("#spDateOfJoiningValid").html("");
+                    isValid = true;
+                } else {
+                    $("#spDateOfJoiningValid").html("Date Of Joining is required.");
+                    isValid = false;
+                }
+
+                var department = $("#DepartmentId option:selected").val();
+                if (department != "") {
+                    $("#spDepartmentNameValid").html("");
+                    isValid = true;
+                } else {
+                    $("#spDepartmentNameValid").html("Department is required.");
+                    isValid = false;
+                }
+
+                return isValid;
+            });
+        });
+    </script>
+}

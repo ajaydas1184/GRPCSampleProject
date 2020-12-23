@@ -221,7 +221,7 @@ namespace GrpcService
                                     MonthlySalary = (s is PermanentEmployee ? ((PermanentEmployee)s).MonthlySalary : 0),
                                     HourlyPay = (s is ContractEmployee ? ((ContractEmployee)s).HourlyPay : 0),
                                     HoursWorked = (s is ContractEmployee ? ((ContractEmployee)s).HoursWorked : 0),
-                                    EmployeeType = (s is ContractEmployee ? "Permanent" : "Contract"),
+                                    EmployeeType = (s is PermanentEmployee ? "Permanent" : "Contract"),
                                     DepartmentName = s.Department.Name
                                 };
                                 empList.Add(model);
