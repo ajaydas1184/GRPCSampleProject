@@ -50,7 +50,14 @@ namespace GrpcClientWebApplication.Controllers
         public ActionResult Create(EmployeeModel model)
         {
             try
-            {
+            {               
+
+                if (ModelState.IsValid)
+                {
+                    EmployeeResponse employeeResponse = _empClient.AddEditRecord(model);
+                    return RedirectToAction("Index");
+                }
+
                 var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
                 List<SelectListItem> ObjList = new List<SelectListItem>();
                 foreach (var item in deptList.Items)
@@ -60,12 +67,6 @@ namespace GrpcClientWebApplication.Controllers
                 };
 
                 ViewBag.DepartmentList = ObjList;
-
-                if (ModelState.IsValid)
-                {
-                    EmployeeResponse employeeResponse = _empClient.AddEditRecord(model);
-                    return RedirectToAction("Index");
-                }
                 return View(model);
             }
             catch
@@ -77,17 +78,42 @@ namespace GrpcClientWebApplication.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            EmployeeModel model = _empClient.GetEmployeeInfo(new FilterRequest() { Id = id });
+            var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
+            List<SelectListItem> ObjList = new List<SelectListItem>();
+            foreach (var item in deptList.Items)
+            {
+                var value = new SelectListItem { Text = item.Name, Value = item.Id.ToString() };
+                ObjList.Add(value);
+            };
+
+            ViewBag.DepartmentList = ObjList;
+            return View(model);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EmployeeModel model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if(ModelState.IsValid)
+                {
+                    EmployeeResponse employeeResponse = _empClient.AddEditRecord(model);
+                    return RedirectToAction("Index");
+                }
+
+                var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
+                List<SelectListItem> ObjList = new List<SelectListItem>();
+                foreach (var item in deptList.Items)
+                {
+                    var value = new SelectListItem { Text = item.Name, Value = item.Id.ToString() };
+                    ObjList.Add(value);
+                };
+
+                ViewBag.DepartmentList = ObjList;
+                return View(model);
             }
             catch
             {

@@ -28,6 +28,7 @@
         <h4>Department</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
             @Html.Label("EmployeeType", "Employee Type", new { @class = "control-label col-md-2" })
@@ -115,13 +116,14 @@
 
 @section Scripts {
     <link href="~/css/jquery-ui.css" rel="stylesheet" />
-    <script src="~/js/jquery-ui.js"></script>    
+    <script src="~/js/jquery-ui.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('#dvHoursWorked').hide();
             $('#dvHourlyPay').hide();
             $('#dvMonthlySalary').hide();
+            enableSalarySection();
 
             $("#datepicker").datepicker({
                 dateFormat: "dd-mm-yy",
@@ -130,7 +132,6 @@
             });
 
             $('#EmployeeType').change(function () {
-
                 var type = $("#EmployeeType option:selected").val();
 
                 if (type == "Permanent") {
@@ -208,5 +209,25 @@
                 return isValid;
             });
         });
+
+        function enableSalarySection() {
+            var type = $("#EmployeeType option:selected").val();
+
+            if (type == "Permanent") {
+                $('#dvHoursWorked').hide();
+                $('#dvHourlyPay').hide();
+                $('#dvMonthlySalary').show();
+            }
+            else if (type == "Contract") {
+                $('#dvHoursWorked').show();
+                $('#dvHourlyPay').show();
+                $('#dvMonthlySalary').hide();
+            }
+            else {
+                $('#dvHoursWorked').hide();
+                $('#dvHourlyPay').hide();
+                $('#dvMonthlySalary').hide();
+            }
+        }
     </script>
 }

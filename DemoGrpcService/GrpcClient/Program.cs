@@ -21,9 +21,6 @@ namespace GrpcClient
             Console.Write("Enter your name:");
             name = Console.ReadLine();
             var reply = await grpcClient.SayHelloAsync(new HelloRequest { Name = name });
-
-            //var deptClient = new RemoteDepartment.RemoteDepartmentClient(grpcChannel);
-            //var ret = await deptClient.GetDepartmentInfoAsync(new DepartmentRequest() { Id = 2 });
             
             Console.WriteLine(string.Format("{0}", reply.Message));
         }
