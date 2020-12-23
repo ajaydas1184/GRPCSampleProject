@@ -5,16 +5,18 @@ using System.Threading.Tasks;
 using GrpcService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GrpcClientWebApplication.Controllers
 {
     public class EmployeeController : BaseController
     {
         private RemoteEmployee.RemoteEmployeeClient _empClient { get { return new RemoteEmployee.RemoteEmployeeClient(_GrpcChannel); } }
+        private RemoteDepartment.RemoteDepartmentClient _DptClient { get { return new RemoteDepartment.RemoteDepartmentClient(_GrpcChannel); } }
         // GET: EmployeeController
         public ActionResult Index(string? type)
         {
-            EmployeesResponse model = _empClient.GetEmployeeList(new FilterRequest() { EmployeeType = type??string.Empty });
+            EmployeesResponse model = _empClient.GetEmployeeList(new FilterRequest() { EmployeeType = type ?? string.Empty });
             ViewBag.EmpType = type;
             return View(model);
         }
@@ -28,38 +30,90 @@ namespace GrpcClientWebApplication.Controllers
         // GET: EmployeeController/Create
         public ActionResult Create()
         {
-            return View();
+            EmployeeModel model = new EmployeeModel();
+            var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
+
+            List<SelectListItem> ObjList = new List<SelectListItem>();
+            foreach (var item in deptList.Items)
+            {
+                var value = new SelectListItem { Text = item.Name, Value = item.Id.ToString() };
+                ObjList.Add(value);
+            };
+
+            ViewBag.DepartmentList = ObjList;
+            return View(model);
         }
 
         // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(EmployeeModel model)
         {
             try
-            {
-                return RedirectToAction(nameof(Index));
+            {               
+
+                if (ModelState.IsValid)
+                {
+                    EmployeeResponse employeeResponse = _empClient.AddEditRecord(model);
+                    return RedirectToAction("Index");
+                }
+
+                var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
+                List<SelectListItem> ObjList = new List<SelectListItem>();
+                foreach (var item in deptList.Items)
+                {
+                    var value = new SelectListItem { Text = item.Name, Value = item.Id.ToString() };
+                    ObjList.Add(value);
+                };
+
+                ViewBag.DepartmentList = ObjList;
+                return View(model);
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            EmployeeModel model = _empClient.GetEmployeeInfo(new FilterRequest() { Id = id });
+            var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
+            List<SelectListItem> ObjList = new List<SelectListItem>();
+            foreach (var item in deptList.Items)
+            {
+                var value = new SelectListItem { Text = item.Name, Value = item.Id.ToString() };
+                ObjList.Add(value);
+            };
+
+            ViewBag.DepartmentList = ObjList;
+            return View(model);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, EmployeeModel model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if(ModelState.IsValid)
+                {
+                    EmployeeResponse employeeResponse = _empClient.AddEditRecord(model);
+                    return RedirectToAction("Index");
+                }
+
+                var deptList = _DptClient.GetDepartmentList(new DepartmentRequest());
+                List<SelectListItem> ObjList = new List<SelectListItem>();
+                foreach (var item in deptList.Items)
+                {
+                    var value = new SelectListItem { Text = item.Name, Value = item.Id.ToString() };
+                    ObjList.Add(value);
+                };
+
+                ViewBag.DepartmentList = ObjList;
+                return View(model);
             }
             catch
             {
